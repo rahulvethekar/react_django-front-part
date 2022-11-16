@@ -6,6 +6,7 @@ import AboutUs from "./components/AboutUs";
 import StudentList from "./components/StudentList";
 import AddStudent from "./components/AddStudent";
 import EditStudent from "./components/EditStudent";
+import ViewDetails from "./components/ViewDetails";
  
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                         <Route path="/students" element={<StudentList/>}/>
                         <Route path="/addstu" element={<AddStudent/>}/>
                         <Route path="/editstudent/:rn" element={<EditStudent/>}/>
+                        <Route path="/view-details/:rn" element={<ViewDetails/>}/>
 
                     </Routes>
               </section>

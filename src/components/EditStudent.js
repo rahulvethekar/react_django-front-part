@@ -55,7 +55,7 @@ export default function EditStudent() {
                 <input type='text' name='city' value={editStudent.city} className='form-control'  onChange={handler}/>
             </div>
             <br/>
-            <input type="submit" value="Add" className="btn btn-success"/>
+            <input type="submit" value="Update" className="btn btn-success"/>
             <br/><br/>
 
             {/* {errors ? <div className='alert alert-danger'>{errors}</div>:null} */}

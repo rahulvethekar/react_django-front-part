@@ -1,17 +1,26 @@
 import React, { memo, useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getStudent } from './services/ProductServices'
+import { deleteStudent, getStudent } from './services/ProductServices'
 
 
 function StudentList() {
     const [students,setStudent] = useState([])
+    const [del,setDelete]=useState([]);
     useEffect(()=>{
         getStudent()
         .then((resp)=>{setStudent(resp.data)})
-    },[])
+    },[del])
 
     console.log(students)
     console.log('helloo')
+
+    function deleteByRn(id){
+        // alert('hi')
+        deleteStudent(id)
+        .then((resp)=>{console.log(resp.data)
+                        setDelete(resp.data)
+                        })
+    }
     
   return (
     <>
@@ -23,7 +32,10 @@ function StudentList() {
             <th>Name</th>
             <th>Marks</th>
             <th>City</th>
-            <th></th>
+            <th>-</th>
+            <th>-</th>
+            <th>-</th>
+
         </tr>
     {
         students.map((data,index)=>{
@@ -34,7 +46,10 @@ function StudentList() {
                     <td>{data.name}</td>
                     <td>{data.marks}</td>
                     <td>{data.city}</td>
-                    <td><button className='btn btn-warning'> <Link to={`/editstudent/${data.rn}`}>Edit</Link></button></td>
+                    <td><button className='btn btn-warning'> <Link to={`/editstudent/${data.rn}`}>Update</Link></button></td>
+                    <td><button style={{color:'black'}}  className='btn btn-outline-danger' onClick={()=>deleteByRn(data.rn)}>Delete</button></td>
+                    <td><button style={{color:'black'}} className='btn btn-primary'><Link to={`/view-details/${data.rn}`}>View Details</Link></button></td>
+
                 </tr>
                 </>
             )

@@ -1,4 +1,3 @@
-import React from 'react'
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000/student/'
@@ -24,7 +23,13 @@ async function retriveStudent(id){
 
 }
 
+async function deleteStudent(id){
+    return await axios.delete(`${SINGLE_STU_API_URL}${id}`)
+
+}
 
 
 
-export {getStudent,postStudent,editStudentbyrn,retriveStudent}
+
+
+export {getStudent,postStudent,editStudentbyrn,retriveStudent,deleteStudent}

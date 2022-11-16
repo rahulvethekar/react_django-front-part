@@ -6,6 +6,7 @@ export default function AddStudent() {
     const navigate = useNavigate()
     const [errors,setError]=useState(undefined)
     const [student,setStudent]=useState({})
+    const [flag,setFlag] = useState(1)
 
     function handler(event){
         const {name,value} = event.target
@@ -21,20 +22,35 @@ export default function AddStudent() {
         .then((resp)=>{console.log(resp.data.error);
                        if (resp.data.error){
                         setError(resp.data.error)
-                       }                         })
-        .catch((error)=>{
-            console.log(typeof(error));
-            // setError(error);
-            // console.log('erorooooooo',errors)
+                        setFlag(1)
+                        console.log(resp.data.error)
+                        console.log('flag----',flag)
+                        navigate('/addstu')
+
+                       }     
+                        else {
+                            setFlag(0)
+                            navigate('/students')
+
+                        }                    })
+
+                      
+                        
+
+                      
+            
+        // .catch((error)=>{
+        //     console.log(typeof(error));
+        //     setError(error);
+        //     console.log('erorooooooo',errors)
 
 
-        })
-        // if not (errors)
-        // navigate('/students') // navigate to student list page
-
+        // })
+        
     }
   return (
     <>
+    <div className='container-sm'>
     <form onSubmit={postData} className='container' >
             <div className='form-group'>
                 <label>Roll no</label>
@@ -59,6 +75,7 @@ export default function AddStudent() {
 
 
         </form>
+        </div>
 
        
     </>
